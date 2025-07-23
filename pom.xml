@@ -18,7 +18,84 @@
       <version>4.0.1</version>
       <scope>provided</scope>
     </dependency>
+    
+    <dependency> 
+  <groupId>org.apache.poi</groupId>
+  <artifactId>poi</artifactId> 
+  <version>5.3.0</version> 
+</dependency> 
+<dependency> 
+  <groupId>org.apache.poi</groupId> 
+  <artifactId>poi-ooxml</artifactId> 
+  <version>5.3.0</version> 
+</dependency>
+<dependency>
+  <groupId>org.jxls</groupId>
+  <artifactId>jxls-jexcel</artifactId>
+  <version>1.0.9</version>
+</dependency>
+<dependency>
+    <groupId>org.dhatim</groupId>
+    <artifactId>fastexcel-reader</artifactId>
+    <version>0.18.1</version>
+</dependency>
+<dependency>
+    <groupId>org.dhatim</groupId>
+    <artifactId>fastexcel</artifactId>
+    <version>0.18.1</version>
+</dependency>
+
+<dependency>
+  <groupId>org.apache.poi</groupId>
+  <artifactId>poi-ooxml-schemas</artifactId>
+  <version>4.1.2</version>
+</dependency>
+<dependency>
+  <groupId>org.apache.xmlbeans</groupId>
+  <artifactId>xmlbeans</artifactId>
+  <version>5.1.1</version>
+</dependency>
+<dependency>
+  <groupId>org.apache.commons</groupId>
+  <artifactId>commons-collections4</artifactId>
+  <version>4.4</version>
+</dependency>
+
+    <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-core</artifactId>
+        <version>2.20.0</version> <!-- Use the latest compatible version -->
+    </dependency>
+    <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-api</artifactId>
+        <version>2.20.0</version>
+    </dependency>
+    
+    <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+<dependency>
+    <groupId>com.google.code.gson</groupId>
+    <artifactId>gson</artifactId>
+    <version>2.13.1</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>2.19.2</version>
+</dependency>
+
+    <dependency>
+  <groupId>org.apache.commons</groupId>
+  <artifactId>commons-text</artifactId>
+  <version>1.10.0</version>
+</dependency>
+
+    
   </dependencies>
+  
+  
 
   <build>
     <plugins>
