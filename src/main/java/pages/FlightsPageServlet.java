@@ -38,6 +38,7 @@ public class FlightsPageServlet extends HttpServlet {
 		String to = request.getParameter("to");
 		to = to.toLowerCase()+" flights";
 		
+		DataManager.getFlightsList("New York Flights");
 		
 		int index = 0;
 		for(String sheetName: DataManager.getSheetNames()) {

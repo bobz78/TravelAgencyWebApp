@@ -10,30 +10,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class DataManager {
 	
-	
-	public static void main(String[] args) {
-		
-		DataManager.setup();
-		
-		int index = 0;
-		String to = "Pari flights";
-		
-		for(String sheetName: DataManager.getSheetNames()) {
-			if(sheetName.toLowerCase().equals(to.toLowerCase()))break;
-			else {
-				
-				System.out.println(sheetName.toLowerCase() + "|||" + to.toLowerCase());
-				++index;
-			}
-		}
-		
-		
-		
-		System.out.println(DataManager.getSheetNames().size());
-		
-	}
-	
-	
 	private static HashMap<String, FlightsList> flightsMap;
 	private static ArrayList<String> sheetNames;
 	
