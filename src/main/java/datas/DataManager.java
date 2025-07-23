@@ -19,15 +19,19 @@ public class DataManager {
 	
 	
 	public static void setup() {
+		
+
+        flightsMap = new HashMap<>();
+        sheetNames = new ArrayList<>();
+		
         try (InputStream file = DataManager.class.getResourceAsStream("Travel_Options_Detailed.xlsx")) {
             if (file == null) {
                 throw new IOException("File not found in package: datas");
             }
             
-
-            flightsMap = new HashMap<>();
-            sheetNames = new ArrayList<>();
+            
             XSSFWorkbook workbook = new XSSFWorkbook(file);
+            
             
             
             for(int i = 0; i < workbook.getNumberOfSheets(); ++i) {
