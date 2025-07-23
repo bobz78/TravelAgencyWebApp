@@ -24,7 +24,7 @@ public class DataManager {
         flightsMap = new HashMap<>();
         sheetNames = new ArrayList<>();
 		
-        try (InputStream file = DataManager.class.getResourceAsStream("Travel_Options_Detailed.xlsx")) {
+        try (InputStream file = DataManager.class.getResourceAsStream("/datas/Travel_Options_Detailed.xlsx")) {
             if (file == null) {
                 throw new IOException("File not found in package: datas");
             }
