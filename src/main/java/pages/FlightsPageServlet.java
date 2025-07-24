@@ -33,32 +33,43 @@ public class FlightsPageServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html");
 		DataManager.setup();
-		//String from = request.getParameter("from");
+		
+		
 		
 		String to = request.getParameter("to");
-		to = to.toLowerCase()+" flights";
+		String to_FlightUse = to.toLowerCase()+" flights";
+		String to_hotelUse = to.toLowerCase()+" hotels";
 		
-		DataManager.getFlightsList("New York Flights");
+		String departureDate = request.getParameter("depart");
+		String returnDate = request.getParameter("return");
 		
-		int index = 0;
+		int flightIndex = 0;
 		for(String sheetName: DataManager.getSheetNames()) {
-			if(sheetName.toLowerCase().equals(to))break;
-			else ++index;
+			if(sheetName.toLowerCase().equals(to_FlightUse))break;
+			else ++flightIndex;
+		}
+		
+		int hotelIndex = 0;
+		for(String sheetName: DataManager.getSheetNames()) {
+			if(sheetName.toLowerCase().equals(to_hotelUse))break;
+			else ++hotelIndex;
 		}
 		
 		
-		if(index<DataManager.getSheetNames().size()) {
-			String flightsJSON = DataManager.getFlightsList(DataManager.getSheetNames().get(index)).jsonify();
-			
+		if(flightIndex<DataManager.getSheetNames().size()) {
+			String flightsJSON = DataManager.getFlightsList(DataManager.getSheetNames().get(flightIndex)).jsonify();
+			String hotelJSON = DataManager.getFlightsList(DataManager.getSheetNames().get(hotelIndex)).jsonify();
 			
 			HttpSession session = request.getSession();
 			session.setAttribute("flightCard", flightsJSON);
+			session.setAttribute("hotelCard", hotelJSON);
+			session.setAttribute("departure", departureDate);
+			session.setAttribute("return", returnDate);
+			session.setAttribute("trip", "");
 			
-			request.getRequestDispatcher("/flightPage.jsp").forward(request, response);
+			request.getRequestDispatcher("/flightPageFolder/flightPage.jsp").forward(request, response);
 		}
-		
-		else request.getRequestDispatcher("/NoExistingFlightPage.jsp").forward(request, response);
-		
+		else request.getRequestDispatcher("/flightPageFolder/NoExistingFlightPage.jsp").forward(request, response);
 	}
 
 	/**

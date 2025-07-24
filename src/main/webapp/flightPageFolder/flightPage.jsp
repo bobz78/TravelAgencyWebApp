@@ -6,7 +6,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Available Flights</title>
-  <link rel="stylesheet" href="flightPage.css" />
+  <link rel="stylesheet" href="flightPageFolder/flightPage.css" />
 </head>
 <body>
   <header>
@@ -35,11 +35,13 @@
     var flightData = JSON.parse('<%= org.apache.commons.text.StringEscapeUtils.escapeEcmaScript((String) session.getAttribute("flightCard")) %>');
     </script>
     
-    <script src="flightPage.js">func();</script>
+    <script src="flightPageFolder/flightPage.js"></script>
     
     <script>
-    window.onload = function() {func();};
+    window.onload = function() {loadFlights();};
     </script>
+    
+    
     
   </main>
 

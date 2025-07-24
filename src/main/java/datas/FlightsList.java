@@ -12,7 +12,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class FlightsList{
 	
-	
 	private XSSFSheet flightsSheet;
 	private List<List<String>> flightsList;
 	private List<String> labels;
