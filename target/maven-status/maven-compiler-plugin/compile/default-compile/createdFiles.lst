@@ -1,0 +1,11 @@
+datas\HotelsSheets$HotelsList.class
+datas\DataManager.class
+datas\HotelsSheets$HotelsList$Hotel.class
+datas\FlightsList.class
+datas\Trip$Flight.class
+datas\Trip$Hotel.class
+pages\FlightsPageServlet.class
+datas\HotelsSheets.class
+datas\Trip.class
+pages\HotelPageServlet.class
+pages\TripPageServlet.class

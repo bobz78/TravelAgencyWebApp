@@ -3,78 +3,80 @@ package datas;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class Trip {
-	
-	
-	public Flight flight;
-	public Hotel hotel;
-	
-	public Trip(String tripJson){
-		
-		ArrayList<String> temp =  extractBracketedStrings(tripJson);
-		
-		flight = new Flight(extractQuotedStrings(temp.get(0)));
-		hotel = new Hotel(extractQuotedStrings(temp.get(1)));
 
-		
+public class Trip {
+
+	private Flight flight;
+	private Hotel hotel;
+	private TripDates dates;
+	
+	public Trip(Flight flight, Hotel hotel, TripDates dates) {
+		this.dates = dates;
+		this.flight = flight;
+		this.hotel = hotel;
 	}
 	
-	private static ArrayList<String> extractBracketedStrings(String input){
-		ArrayList<String> list = new ArrayList<String>();
-		while(input.length()>1) {
-			String temp = "";
-			int i = 0;
-			if(input.charAt(0)=='[') {
-				int index = 1;
-				while(index<input.length()) {
-					if(input.charAt(index)==']') {
-						i = index;
-						break;
+	public Trip(String tripJSON){
+		
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			
+			
+			while(tripJSON.length()>1) {
+				if(tripJSON.substring(0, 6).equals("flight")) {
+					int index = 7;
+					String temp = "";
+					while(tripJSON.charAt(index)!='}') {
+						temp += tripJSON.charAt(index);
+						++index;
 					}
-					temp+= input.substring(index, index+1);
-					index++;
+					this.flight = mapper.readValue("{"+temp+"}", Flight.class);
+					tripJSON = tripJSON.substring(index+1);
+				}
+				if(tripJSON.substring(0, 5).equals("hotel")) {
+					int index = 6;
+					String temp = "";
+					while(tripJSON.charAt(index)!='}') {
+						temp += tripJSON.charAt(index);
+						++index;
+					}
+					this.hotel = mapper.readValue("{"+temp+"}", Hotel.class);
+					tripJSON = tripJSON.substring(index+1);
+				}
+				if(tripJSON.length()>9)if(tripJSON.substring(0, 9).equals("tripDates")) {
+					int index = 10;
+					String temp = "";
+					while(tripJSON.charAt(index)!='}') {
+						temp += tripJSON.charAt(index);
+						++index;
+					}
+					this.dates = mapper.readValue("{"+temp+"}", TripDates.class);
+					tripJSON = tripJSON.substring(index+1);
 				}
 			}
 			
-			list.add(temp);
-			input = input.substring(i+1);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
-		return list;
 	}
 	
 	
-	private static ArrayList<String> extractQuotedStrings(String input) {
-        ArrayList<String> result = new ArrayList<>();
-        Pattern pattern = Pattern.compile("\"(.*?)\"");
-        Matcher matcher = pattern.matcher(input);
-
-        while (matcher.find()) {
-            result.add(matcher.group(1));
-        }
-
-        return result;
-    }
 	
-	
-	
-	
-	public double tripTotalCost(String departureDate, String returnDate) {
+	public double tripTotalCost() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate d1 = LocalDate.parse(departureDate, formatter);
-        LocalDate d2 = LocalDate.parse(returnDate, formatter);
+        LocalDate d1 = LocalDate.parse(dates.getDepartureDate(), formatter);
+        LocalDate d2 = LocalDate.parse(dates.getReturnDate(), formatter);
 
         int days = (int) ChronoUnit.DAYS.between(d1, d2);
         
         return hotel.getPrice()*days + flight.getPrice();
 	}
+	
 	
 	public String jsonify() {
 		
@@ -89,77 +91,20 @@ public class Trip {
 	}
 	
 	
-	public class Hotel{
-		
-		private String name;
-		private String rating;
-		private double price;
-		
-		Hotel(ArrayList<String> hotelInfo){
-			name = hotelInfo.get(0);
-			rating = hotelInfo.get(1);
-			price = Double.parseDouble(hotelInfo.get(2));
-		}
-
-		public String getName() {
-			return name;
-		}
-
-		public String getRating() {
-			return rating;
-		}
-
-		public double getPrice() {
-			return price;
-		}
+	public Flight getFlight() {
+		return flight;
 	}
 
-	public class Flight{
-		
-		private String airline;
-		private String flightNum;
-		private String from;
-		private String to;
-		private String departureTime;
-		private String arrivalTime;
-		private double price;
-		
-		Flight(ArrayList<String> flightInfo){
-			airline = flightInfo.get(0);
-			flightNum = flightInfo.get(1);
-			from = flightInfo.get(2);
-			to = flightInfo.get(3);
-			departureTime = flightInfo.get(4);
-			arrivalTime = flightInfo.get(5);
-			price = Double.parseDouble(flightInfo.get(6));
-		}
+	public Hotel getHotel() {
+		return hotel;
+	}
 
-		public String getAirline() {
-			return airline;
-		}
+	public TripDates getDates() {
+		return dates;
+	}
 
-		public String getFlightNum() {
-			return flightNum;
-		}
-
-		public String getFrom() {
-			return from;
-		}
-
-		public String getTo() {
-			return to;
-		}
-
-		public String getDepartureTime() {
-			return departureTime;
-		}
-
-		public String getArrivalTime() {
-			return arrivalTime;
-		}
-
-		public double getPrice() {
-			return price;
-		}
+	@Override
+	public String toString() {
+		return "Trip: [" + flight + " ," + hotel + " ," + dates + "]";
 	}
 }

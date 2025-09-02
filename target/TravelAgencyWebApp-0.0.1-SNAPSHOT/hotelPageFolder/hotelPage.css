@@ -1,0 +1,85 @@
+@charset "UTF-8";
+/* Reset & base */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f5ebfd;
+  color: #330066;
+}
+
+header {
+  background-color: #7209b7;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+}
+
+.logo {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+nav a {
+  color: white;
+  margin-left: 25px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+main {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+h1 {
+  color: #4b0082;
+  font-size: 2em;
+  margin-bottom: 0.3em;
+}
+
+.subtext {
+  color: #555;
+  margin-bottom: 2em;
+}
+
+/* Cards */
+.card-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.hotel-card {
+  background-color: white;
+  border: 2px solid #7209b7;
+  border-radius: 10px;
+  padding: 20px;
+  width: 260px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  text-align: left;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.hotel-card:hover {
+  transform: translateY(-5px);
+}
+
+.hotel-card h2 {
+  color: #7209b7;
+  margin-bottom: 10px;
+}
+
+/* Footer */
+footer {
+  background-color: #7209b7;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}

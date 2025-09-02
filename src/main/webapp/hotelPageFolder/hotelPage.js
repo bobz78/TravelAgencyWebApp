@@ -1,14 +1,14 @@
 function loadHotels() {
   const container = document.getElementById("hotelsSection");
-
-  hotelData.forEach(hotel => {
+  
+  hotels.forEach(hotel => {
     const card = document.createElement("div");
     card.className = "hotel-card";
 
     card.innerHTML = `
-      <h2>${hotel[0]}</h2>
-      <p><strong>Rating:</strong> ${hotel[1]} ⭐</p>
-      <p><strong>Price/Night:</strong> $${hotel[2]}</p>
+      <h2>${hotel.name}</h2>
+      <p><strong>Rating:</strong> ${hotel.rating} ⭐</p>
+      <p><strong>Price/Night:</strong> $${hotel.price}</p>
     `;
 
     card.style.cursor = "pointer";
@@ -19,7 +19,7 @@ function loadHotels() {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded"
         },
-        body: "hotel=" + encodeURIComponent(JSON.stringify(hotel))
+        body: "hotel=" + encodeURIComponent("hotel"+JSON.stringify(hotel))
       })
       .then(response => {
         if (response.redirected) {

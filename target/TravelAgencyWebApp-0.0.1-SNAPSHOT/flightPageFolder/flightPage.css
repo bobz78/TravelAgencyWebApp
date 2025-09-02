@@ -1,0 +1,100 @@
+/* Reset & basic setup */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f4eff9;
+  color: #2e2e2e;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header */
+header {
+  background-color: #6600aa;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+header nav a {
+  color: white;
+  margin-left: 1.5rem;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+header nav a:hover {
+  text-decoration: underline;
+}
+
+/* Welcome Section */
+.welcome {
+  text-align: center;
+  margin: 3rem auto 1rem;
+}
+
+.welcome h1 {
+  font-size: 2rem;
+  color: #4b0082;
+  margin-bottom: 0.5rem;
+}
+
+.welcome p {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Flights Section */
+.flights {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.flight-card {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 2px solid #6600aa; /* Added border */
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  width: 300px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.flight-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 20px rgba(102, 0, 170, 0.2);
+}
+
+.flight-card h2 {
+  color: #6600aa;
+  margin-bottom: 0.5rem;
+}
+
+.flight-card p {
+  margin: 0.3rem 0;
+}
+
+/* Footer */
+footer {
+  background-color: #6600aa;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  margin-top: auto;
+}

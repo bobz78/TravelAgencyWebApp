@@ -24,8 +24,8 @@
 
     <div id="hotelsSection" class="card-container">
     
-    <script type="text/javascript">var hotelData = JSON.parse('<%= org.apache.commons.text.StringEscapeUtils.escapeEcmaScript((String) session.getAttribute("hotelCard")) %>');</script>
-    <script type="text/javascript">function fun(){console.log(hotelData);}</script>
+    <script type="text/javascript">var hotels = JSON.parse('<%= org.apache.commons.text.StringEscapeUtils.escapeEcmaScript((String) session.getAttribute("hotels")) %>');</script>
+    <script type="text/javascript">function fun(){console.log(hotels);}</script>
     
     <script src="hotelPageFolder/hotelPage.js"></script>
     

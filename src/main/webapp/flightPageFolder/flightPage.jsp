@@ -40,8 +40,7 @@
     <script>
     window.onload = function() {loadFlights();};
     </script>
-    
-    
+
     
   </main>
 

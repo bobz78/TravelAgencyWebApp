@@ -30,7 +30,7 @@ public class TripPageServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("tripPage.jsp").forward(request, response);
+		request.getRequestDispatcher("/tripPageFolder/tripPage.jsp").forward(request, response);
 	}
 
 	/**
@@ -43,22 +43,22 @@ public class TripPageServlet extends HttpServlet {
         if (hotelJson != null && !hotelJson.isEmpty()) {
             HttpSession session = request.getSession();
             String tripJson = (String) session.getAttribute("trip");
+            
+            
             session.setAttribute("trip", tripJson+hotelJson);
             
+            
             Trip trip = new Trip((String) session.getAttribute("trip"));
-            session.setAttribute("trip", trip.jsonify());
-            
-            String departureDate = (String)session.getAttribute("departure");
-            String returnDate = (String)session.getAttribute("return");
-            
-            double totalCost = trip.tripTotalCost(departureDate, returnDate);
+       
+            double totalCost = trip.tripTotalCost();
             String totalCostString = totalCost+"";
-            session.setAttribute("totalCost", totalCostString);
             
+            
+            session.setAttribute("trip", trip.jsonify());
+            session.setAttribute("totalCost", totalCostString);
         }
 
         // Redirect or forward to next page
         response.sendRedirect("TripPageServlet");
 	}
-
 }

@@ -1,0 +1,132 @@
+@charset "UTF-8";
+/* Base Reset */
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f3eafd;
+  color: #3b005e;
+}
+
+/* Header */
+header {
+  background-color: #5e00a0;
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header .logo {
+  color: white;
+  font-weight: 700;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+header .logo .icon {
+  font-size: 1.4rem;
+}
+header nav a {
+  color: white;
+  margin-left: 24px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: opacity 0.3s ease;
+}
+header nav a:hover {
+  opacity: 0.7;
+}
+
+/* Main Content */
+main {
+  max-width: 480px;
+  margin: 48px auto;
+  background: white;
+  padding: 32px;
+  border-radius: 8px;
+  box-shadow: 0 6px 14px rgba(94, 0, 160, 0.15);
+}
+main h1 {
+  margin-top: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  color: #4b007a;
+}
+main p {
+  text-align: center;
+  margin-bottom: 32px;
+  color: #6e4a99;
+}
+
+/* Form styles */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: block;
+}
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="month"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid #5e00a0;
+  border-radius: 6px;
+  font-size: 1rem;
+  color: #3b005e;
+  transition: border-color 0.3s ease;
+}
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="month"]:focus,
+input[type="password"]:focus {
+  border-color: #3b005e;
+  outline: none;
+}
+
+/* Split Expiry and CVV */
+.row {
+  display: flex;
+  gap: 20px;
+}
+.row > div {
+  flex: 1;
+}
+
+/* Button */
+button {
+  background-color: #5e00a0;
+  border: none;
+  color: white;
+  padding: 14px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+button:hover {
+  background-color: #450072;
+}
+
+/* Footer */
+footer {
+  margin-top: 64px;
+  background-color: #5e00a0;
+  color: white;
+  text-align: center;
+  padding: 16px 0;
+  font-size: 0.9rem;
+}

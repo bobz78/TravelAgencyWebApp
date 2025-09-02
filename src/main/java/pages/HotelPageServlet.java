@@ -3,6 +3,7 @@ package pages;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -40,9 +41,12 @@ public class HotelPageServlet extends HttpServlet {
 
         if (flightJson != null && !flightJson.isEmpty()) {
             HttpSession session = request.getSession();
-            session.setAttribute("trip", flightJson);
+            session.setAttribute("trip", session.getAttribute("trip") + flightJson);
         }
 
+        
+        if(request.getCookies().length!=0)for(Cookie cookie: request.getCookies())System.out.println(cookie.getName() +", "+ cookie.getValue());
+        
         // Redirect or forward to next page
         response.sendRedirect("HotelPageServlet");
     }

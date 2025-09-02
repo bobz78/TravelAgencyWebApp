@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import datas.DataManager;
+import datas.TripDates;
 
 /**
  * Servlet implementation class MainPageServlet
@@ -44,28 +45,34 @@ public class FlightsPageServlet extends HttpServlet {
 		String returnDate = request.getParameter("return");
 		
 		int flightIndex = 0;
-		for(String sheetName: DataManager.getSheetNames()) {
+		for(String sheetName: DataManager.getExistingFlightsNames()) {
 			if(sheetName.toLowerCase().equals(to_FlightUse))break;
 			else ++flightIndex;
 		}
 		
 		int hotelIndex = 0;
-		for(String sheetName: DataManager.getSheetNames()) {
+		for(String sheetName: DataManager.getExistingHotelsNames()) {
 			if(sheetName.toLowerCase().equals(to_hotelUse))break;
 			else ++hotelIndex;
 		}
 		
 		
-		if(flightIndex<DataManager.getSheetNames().size()) {
-			String flightsJSON = DataManager.getFlightsList(DataManager.getSheetNames().get(flightIndex)).jsonify();
-			String hotelJSON = DataManager.getFlightsList(DataManager.getSheetNames().get(hotelIndex)).jsonify();
+		if(flightIndex<DataManager.getExistingFlightsNames().size()) {
+
+			
+			String hotelsJSON = DataManager.getHotelsList(DataManager.getExistingHotelsNames().get(hotelIndex)).jsonify();
+			String flightsJSON = DataManager.getFlightsList(DataManager.getExistingFlightsNames().get(flightIndex)).jsonify();
 			
 			HttpSession session = request.getSession();
+			
+			
 			session.setAttribute("flightCard", flightsJSON);
-			session.setAttribute("hotelCard", hotelJSON);
+			session.setAttribute("hotels", hotelsJSON);
 			session.setAttribute("departure", departureDate);
 			session.setAttribute("return", returnDate);
-			session.setAttribute("trip", "");
+			TripDates dates = new TripDates(departureDate, returnDate);
+			session.setAttribute("trip", "tripDates"+dates.jsonify()); 
+
 			
 			request.getRequestDispatcher("/flightPageFolder/flightPage.jsp").forward(request, response);
 		}
@@ -79,5 +86,4 @@ public class FlightsPageServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }

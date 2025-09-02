@@ -1,40 +1,50 @@
+let startTime = Date.now();
+window.timeSpent = 0; 
+
+setInterval(function () {
+    window.timeSpent = Math.floor((Date.now() - startTime) / 1000);
+}, 1000);
+
+
 function loadFlights() {
-  const container = document.getElementById("flightsSection");
+	const container = document.getElementById("flightsSection");
 
-  flightData.forEach(flight => {
-    const card = document.createElement("div");
-    card.className = "flight-card";
+	flightData.forEach(flight => {
+	  const card = document.createElement("div");
+	  card.className = "flight-card";
 
-    card.innerHTML = `
-      <h2>${flight[0]} • ${flight[1]}</h2>
-      <p><strong>From:</strong> ${flight[2]}</p>
-      <p><strong>To:</strong> ${flight[3]}</p>
-      <p><strong>Departure:</strong> ${flight[4]}</p>
-      <p><strong>Arrival:</strong> ${flight[5]}</p>
-      <p><strong>Price:</strong> ${flight[6]}</p>
-    `;
+	  card.innerHTML = `
+	    <h2>${flight.airline} • ${flight.flightNum}</h2>
+	    <p><strong>From:</strong> ${flight.from}</p>
+	    <p><strong>To:</strong> ${flight.to}</p>
+	    <p><strong>Departure:</strong> ${flight.departureTime}</p>
+	    <p><strong>Arrival:</strong> ${flight.arrivalTime}</p>
+	    <p><strong>Price:</strong> ${flight.price}</p>
+	  `;
 
-    card.style.cursor = "pointer";
+	  card.style.cursor = "pointer";
 
-    card.addEventListener("click", () => {
+	  card.addEventListener("click", () => {
+	      document.cookie = `timeSpentOnPage=${window.timeSpent}; path=/; max-age=3600`;
 
-      fetch("HotelPageServlet", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: "flight=" + encodeURIComponent(JSON.stringify(flight))
-      }).then(response => {
-        if (response.redirected) {
-          window.location.href = `HotelPageServlet`;
-        } else {	
-          console.log("Trip sent successfully.");
-        }
-      }).catch(error => {
-        console.error("Error sending trip:", error);
-      });
-    });
+	      fetch("HotelPageServlet", {
+	          method: "POST",
+	          credentials: "include",
+	          headers: {
+	              "Content-Type": "application/x-www-form-urlencoded"
+	          },
+	          body: "flight=" + encodeURIComponent("flight" + JSON.stringify(flight))
+	      }).then(response => {
+	          if (response.redirected) {
+	              window.location.href = `HotelPageServlet`;
+	          } else {    
+	              console.log("Trip sent successfully.");
+	          }
+	      }).catch(error => {
+	          console.error("Error sending trip:", error);
+	      });
+	  });
 
-    container.appendChild(card);
-  });
+	  container.appendChild(card);
+	});
 }

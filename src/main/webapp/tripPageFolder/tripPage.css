@@ -1,0 +1,92 @@
+@charset "UTF-8";
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4effa;
+  color: #2d2d2d;
+}
+
+.header {
+  background-color: #6a0dad;
+  color: white;
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: white;
+  border: 2px solid #b085f5; /* More defined border */
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(106, 13, 173, 0.1); /* Subtle purple shadow */
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #3c0066;
+}
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 1.2rem 1.5rem;
+  margin-bottom: 1.5rem;
+  background-color: #f8f5ff;
+}
+
+.card h2 {
+  margin-top: 0;
+  color: #4b0082;
+  font-size: 1.2rem;
+}
+
+.info-row {
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+}
+
+.total {
+  background-color: #e5d8ff;
+  text-align: center;
+  border-color: #a179d1;
+}
+
+.total-amount {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #4b0082;
+  margin-top: 1rem;
+}
+
+.footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #6a0dad;
+  color: white;
+  font-size: 0.85rem;
+}
+
+.pay-now-btn {
+  background-color: #6a0dad;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  margin-top: 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pay-now-btn:hover {
+  background-color: #4b0082;
+}
