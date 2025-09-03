@@ -25,7 +25,7 @@
   <h1>Payment Details</h1>
   <p>Enter your credit card information to complete the booking.</p>
 
-  <form id="payment-form" action="/TravelAgencyWebApp/PaymentPageServlet" method="POST">
+  <form id="payment-form" action="/PaymentPageServlet" method="POST">
 
 
     <label for="email">Email Address</label>
